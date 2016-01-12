@@ -21,16 +21,16 @@ public class postJobServiceImp  implements postJobService {
 	@Override
 	public postJobDTO create(postJobDTO pj) {
 		
-		PostJob  persisted = new PostJob();
-		//persisted.save(persisted);
-        return convertToDTO(persisted);
+		PostJob postj = new PostJob();
+		repository.save(postj);
+		 return convertToDTO(postj);
 		
 	}
 	
 	
 	 @Override
 	 public postJobDTO update(postJobDTO UID) {
-		PostJob updated = findpostJobById(UID.getUserid());
+		PostJob updated = findpostJobById(UID.getId());
         updated.update(UID.getUserid(), UID.getSummary(),UID.getCategory(),UID.getSubCategory(),UID.getState(), UID.getPrivate(), UID.getBudget(),UID.getCity(),UID.getDuration(),UID.getINR(), UID.getReferenceDocs(), UID.getStatus(), UID.getDateTimeOfPost(), UID.getDescription(), UID.getLocation());
         updated = repository.save(updated);
         return convertToDTO(updated);
