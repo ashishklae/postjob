@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:postJob.PostJobApplication</config>
+		<config>java:postjob.PostJobApplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

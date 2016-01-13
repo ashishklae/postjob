@@ -1,4 +1,4 @@
-package postJob;
+package postjob.model;
 
 public class ErrorInfo {
 	private String url;

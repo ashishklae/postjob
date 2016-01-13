@@ -1,25 +1,26 @@
-package postJob;
+package postjob.model;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import static java.util.stream.Collectors.toList;
 
 @Service
-public class postJobServiceImp  implements postJobService {
+public class PostJobServiceImp  implements PostJobService {
 
 	@Autowired
-	private final postJobRepository repository;
+	private final PostJobRepository repository;
 	
 	@Autowired
-	 public postJobServiceImp(postJobRepository repository) {
+	 public PostJobServiceImp(PostJobRepository repository) {
        this.repository = repository;
    }
 	
 	@Override
-	public postJobDTO create(postJobDTO pj) {
+	public PostJobDTO create(PostJobDTO pj) {
 		
 		PostJob postj = new PostJob();
 		repository.save(postj);
@@ -29,7 +30,7 @@ public class postJobServiceImp  implements postJobService {
 	
 	
 	 @Override
-	 public postJobDTO update(postJobDTO UID) {
+	 public PostJobDTO update(PostJobDTO UID) {
 		PostJob updated = findpostJobById(UID.getId());
         updated.update(UID.getUserid(), UID.getSummary(),UID.getCategory(),UID.getSubCategory(),UID.getState(), UID.getPrivate(), UID.getBudget(),UID.getCity(),UID.getDuration(),UID.getINR(), UID.getReferenceDocs(), UID.getStatus(), UID.getDateTimeOfPost(), UID.getDescription(), UID.getLocation());
         updated = repository.save(updated);
@@ -37,31 +38,31 @@ public class postJobServiceImp  implements postJobService {
      }
 
 	 @Override
-	 public List<postJobDTO> findAll() {
+	 public List<PostJobDTO> findAll() {
 		List<PostJob> postJobEntries = repository.findAll();
         return convertToDTOs(postJobEntries);
 	 }
 	
-	  private List<postJobDTO> convertToDTOs(List<PostJob> models) {
+	  private List<PostJobDTO> convertToDTOs(List<PostJob> models) {
 	        return models.stream()
 	                .map(this::convertToDTO)
 	                .collect(toList());
 	    }
 
 	  @Override
-		public postJobDTO findById(long id) {
+		public PostJobDTO findById(String id) {
 			PostJob job = findpostJobById(id);
 	        return convertToDTO(job);
 		}
 	 
-	 private PostJob findpostJobById(long id) {
+	 private PostJob findpostJobById(String id) {
         Optional<PostJob> result = repository.findOne(id);
         return result.orElseThrow(() -> new  PostJobNotFoundException(id));
      }
 	//
 	
-	  private postJobDTO convertToDTO(PostJob model) {
-		 postJobDTO dto = new postJobDTO();
+	  private PostJobDTO convertToDTO(PostJob model) {
+		 PostJobDTO dto = new PostJobDTO();
 	 
 	        dto.setUserid(model.getUserid());
 	        dto.setSummary(model.getSummary());

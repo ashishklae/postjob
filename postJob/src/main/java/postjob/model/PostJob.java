@@ -1,4 +1,4 @@
-   package postJob;
+   package postjob.model;
 
    import org.springframework.data.annotation.Id;
    import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,7 +6,7 @@
  public final class PostJob {
 	
 	@Id
-	private long id;
+	private String id;
    
    public int getUserid() {
 	return userid;

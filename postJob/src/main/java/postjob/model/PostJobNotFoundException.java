@@ -1,14 +1,14 @@
-package postJob;
+package postjob.model;
 
 public class PostJobNotFoundException  extends RuntimeException  {
 	private static final long serialVersionUID = -2859292084648724403L;
-	private final long id;
+	private final String id;
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public PostJobNotFoundException(long id) {
+	public PostJobNotFoundException(String id) {
 		this.id = id;
 	}
 

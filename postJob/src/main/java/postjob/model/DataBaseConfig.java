@@ -1,4 +1,4 @@
-package postJob;
+package postjob.model;
 
 import java.util.Locale;
 

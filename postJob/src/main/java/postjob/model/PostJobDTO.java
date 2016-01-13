@@ -1,11 +1,11 @@
-package postJob;
+package postjob.model;
 
-public class postJobDTO {
-	private long id;
-	public long getId() {
+public class PostJobDTO {
+	private String id;
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	private  int userid;
@@ -113,7 +113,7 @@ public class postJobDTO {
 	public void setPrivate(String private1) {
 		Private = private1;
 	}
-	public postJobDTO() {
+	public PostJobDTO() {
 		
 	
 
