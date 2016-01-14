@@ -13,22 +13,22 @@ public class PostJobServiceImp  implements PostJobService {
 
 	@Autowired
 	private final PostJobRepository repository;
-	
+
 	@Autowired
 	 public PostJobServiceImp(PostJobRepository repository) {
        this.repository = repository;
    }
-	
+
 	@Override
 	public PostJobDTO create(PostJobDTO pj) {
-		
-		PostJob postj = new PostJob();
+
+		PostJob postj = new PostJob(pj);
 		repository.save(postj);
 		 return convertToDTO(postj);
-		
+
 	}
-	
-	
+
+
 	 @Override
 	 public PostJobDTO update(PostJobDTO UID) {
 		PostJob updated = findpostJobById(UID.getId());
@@ -42,7 +42,7 @@ public class PostJobServiceImp  implements PostJobService {
 		List<PostJob> postJobEntries = repository.findAll();
         return convertToDTOs(postJobEntries);
 	 }
-	
+
 	  private List<PostJobDTO> convertToDTOs(List<PostJob> models) {
 	        return models.stream()
 	                .map(this::convertToDTO)
@@ -54,16 +54,16 @@ public class PostJobServiceImp  implements PostJobService {
 			PostJob job = findpostJobById(id);
 	        return convertToDTO(job);
 		}
-	 
+
 	 private PostJob findpostJobById(String id) {
         Optional<PostJob> result = repository.findOne(id);
         return result.orElseThrow(() -> new  PostJobNotFoundException(id));
      }
 	//
-	
+
 	  private PostJobDTO convertToDTO(PostJob model) {
 		 PostJobDTO dto = new PostJobDTO();
-	 
+
 	        dto.setUserid(model.getUserid());
 	        dto.setSummary(model.getSummary());
 	        dto.setCategory(model.getCategory());
@@ -79,16 +79,16 @@ public class PostJobServiceImp  implements PostJobService {
 	        dto.setDateTimeOfPost(model.getDateTimeOfPost());
 	        dto.setStatus(model.getStatus());
 	        dto.setPrivate(model.getPrivate());
-	 
+
 	        return dto;
 	    }
 
 
 
 
-	
 
-	
 
-	
+
+
+
 }
